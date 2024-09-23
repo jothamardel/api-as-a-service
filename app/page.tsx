@@ -1,101 +1,302 @@
-import Image from "next/image";
+"use client";
+
+import { FormEvent, useEffect, useState } from "react";
+import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
+
+interface PayloadProps {
+  amount: number;
+  currency: string;
+  coinId: string;
+  networkId: string;
+  reference: string;
+  meta: {
+    title: string;
+    description: string;
+    email: string;
+    customerId: string;
+    fullName: string;
+  };
+}
+interface DataProps {
+  amount: number;
+  currency: string;
+  coinId: string;
+  networkId: string;
+  reference: string;
+  title: string;
+  description: string;
+  email: string;
+  customerId: string;
+  fullName: string;
+}
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [networks, setNetworks] = useState([]);
+  const [coins, setCoins] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState<DataProps>({
+    amount: 0,
+    coinId: "",
+    currency: "",
+    customerId: "",
+    description: "",
+    email: "",
+    fullName: "",
+    networkId: "",
+    reference: "",
+    title: "",
+  });
+  const [errorResp, setErrorResp] = useState("");
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  async function getNetworks() {
+    try {
+      const response = await axios.get(
+        "https://api.dev.theclockchain.io/api/v1/wallet/checkout/networks/83040981-d26b-4b6f-9e71-fbab2b1cb58a",
+        {
+          params: {
+            coinId: "83040981-d26b-4b6f-9e71-fbab2b1cb58a",
+          },
+          headers: {
+            "clock-api-key":
+              "cpay_test_sk_q1kca1623ghr96nfpy4u8pi6uikr5mw6jk9spapx",
+          },
+        }
+      );
+      setNetworks(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function getCoins() {
+    try {
+      const response = await axios.get(
+        "https://api.dev.theclockchain.io/api/v1/wallet/checkout/coins",
+        {
+          headers: {
+            "clock-api-key":
+              "cpay_test_sk_q1kca1623ghr96nfpy4u8pi6uikr5mw6jk9spapx",
+          },
+        }
+      );
+      setCoins(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    const payload: PayloadProps = {
+      amount: data.amount,
+      currency: data.currency,
+      coinId: data.coinId,
+      networkId: data.networkId,
+      reference: `${uuidv4()}`,
+      meta: {
+        title: data.title,
+        description: data.description,
+        email: data.email,
+        customerId: data.customerId,
+        fullName: data.fullName,
+      },
+    };
+
+    try {
+      const response = await axios.post(
+        "https://api.dev.theclockchain.io/api/v1/payment/create",
+        payload,
+        {
+          headers: {
+            "clock-api-key":
+              "cpay_test_sk_q1kca1623ghr96nfpy4u8pi6uikr5mw6jk9spapx",
+          },
+        }
+      );
+      console.log(response.data.data);
+      // setHtmlData(format(response.data));
+      setLoading(false);
+    } catch (error) {
+      console.log(error.response);
+      setErrorResp(error?.response?.data?.message);
+      setLoading(false);
+    }
+  }
+  // function format(html: any) {
+  //   const tab = "\t";
+  //   let result = "";
+  //   let indent = "";
+
+  //   html.split(/>\s*</).forEach(function (element: any) {
+  //     if (element.match(/^\/\w/)) {
+  //       indent = indent.substring(tab.length);
+  //     }
+
+  //     result += indent + "<" + element + ">\r\n";
+
+  //     if (element.match(/^<?\w[^>]*[^\/]$/) && !element.startsWith("input")) {
+  //       indent += tab;
+  //     }
+  //   });
+
+  //   return result.substring(1, result.length - 3);
+  // }
+
+  useEffect(() => {
+    getNetworks();
+    getCoins();
+  }, []);
+
+  return (
+    <div className="flex justify-center items-center h-screen bg-white ">
+      <form
+        className="border w-2/3 p-6 space-y-4 mt-10 shadow-lg rounded-md "
+        onSubmit={handleSubmit}
+      >
+        {errorResp && (
+          <div className="border p-2 rounded-lg bg-red-200 text-red-700 border-red-700">
+            {errorResp}
+          </div>
+        )}
+        <div className="">
+          <label className="text-black">Fullname: </label>
+          <br />
+          <input
+            placeholder="Enter fullname"
+            className="border p-2 rounded-md w-full outline-none text-black"
+            name="fullName"
+            onChange={(e) =>
+              setData({ ...data, [e.target.name]: e.target.value })
+            }
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+        <div className="">
+          <label className="text-black">Title: </label>
+          <br />
+          <input
+            placeholder="Enter the title"
+            className="border p-2 rounded-md w-full outline-none text-black"
+            name="title"
+            onChange={(e) =>
+              setData({ ...data, [e.target.name]: e.target.value })
+            }
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+        </div>
+        <div className="">
+          <label className="text-black">Amount: </label>
+          <br />
+          <input
+            placeholder="Enter the amount"
+            className="border p-2 rounded-md w-full outline-none text-black"
+            name="amount"
+            onChange={(e) =>
+              setData({ ...data, [e.target.name]: Number(e.target.value) })
+            }
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+        </div>
+        <div className="">
+          <label className="text-black">Email: </label>
+          <br />
+          <input
+            placeholder="Enter the email"
+            className="border p-2 rounded-md w-full outline-none text-black"
+            name="email"
+            onChange={(e) =>
+              setData({ ...data, [e.target.name]: e.target.value })
+            }
           />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        </div>
+        <div className="">
+          <label className="text-black">CustomerId: </label>
+          <br />
+          <input
+            placeholder="Enter the customer id"
+            className="border p-2 rounded-md w-full outline-none text-black"
+            name="customerId"
+            onChange={(e) =>
+              setData({ ...data, [e.target.name]: e.target.value })
+            }
+          />
+        </div>
+        <div className="">
+          <label className="text-black">Coin: </label>
+          <br />
+          <select
+            className="border rounded-md p-2 w-full outline-none form-select text-black"
+            name="coinId"
+            onChange={(e) =>
+              setData({ ...data, [e.target.name]: e.target.value })
+            }
+          >
+            <option>Please select coin</option>
+            {coins?.map((item: { id: string; name: string }) => (
+              <option key={item.id} value={item.id}>
+                {item.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="">
+          <label className="text-black">Network: </label>
+          <br />
+          <select
+            className="border rounded-md p-2 w-full outline-none form-select text-black"
+            name="networkId"
+            onChange={(e) =>
+              setData({ ...data, [e.target.name]: e.target.value })
+            }
+          >
+            <option>Please select network</option>
+            {networks?.map((item: { id: string; name: string }) => (
+              <option key={item.id} value={item.id}>
+                {item.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="">
+          <label className="text-black">Currency: </label>
+          <br />
+          <select
+            className="border rounded-md p-2 w-full outline-none form-select text-black"
+            name="currency"
+            onChange={(e) =>
+              setData({ ...data, [e.target.name]: e.target.value })
+            }
+          >
+            <option>Please select currency</option>
+            <option value="ngn">NGN</option>
+            <option value="usd">USD</option>
+          </select>
+        </div>
+        <div>
+          <hr />
+        </div>
+        <div className="">
+          <label className="text-black">Description: </label>
+          <br />
+          <textarea
+            placeholder="Enter description"
+            className="border p-2 rounded-md w-full outline-none text-black"
+            name="description"
+            onChange={(e) =>
+              setData({ ...data, [e.target.name]: e.target.value })
+            }
+          ></textarea>
+        </div>
+
+        <div>
+          <button
+            className="w-full btn bg-purple-700 p-2 rounded-lg"
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? "loading..." : "Submit"}
+          </button>
+        </div>
+      </form>
     </div>
   );
 }
