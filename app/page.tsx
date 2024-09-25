@@ -31,6 +31,10 @@ interface DataProps {
   fullName: string;
 }
 
+// interface Response {
+//   response: { data: { message: string } };
+// }
+
 export default function Home() {
   const [networks, setNetworks] = useState([]);
   const [coins, setCoins] = useState([]);
@@ -118,8 +122,8 @@ export default function Home() {
       console.log(response.data.data);
       // setHtmlData(format(response.data));
       setLoading(false);
-    } catch (error) {
-      console.log(error.response);
+    } catch (error: any) {
+      console.log(error?.response);
       setErrorResp(error?.response?.data?.message);
       setLoading(false);
     }
