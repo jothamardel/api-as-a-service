@@ -122,6 +122,8 @@ export default function Home() {
       console.log(response.data.data);
       // setHtmlData(format(response.data));
       setLoading(false);
+      // @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.log(error?.response);
       setErrorResp(error?.response?.data?.message);
