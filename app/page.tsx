@@ -54,20 +54,22 @@ export default function Home() {
   const [errorResp, setErrorResp] = useState("");
 
   async function getNetworks() {
+    if (!data.coinId) return;
     try {
       const response = await axios.get(
-        "https://api.dev.theclockchain.io/api/v1/wallet/checkout/networks/83040981-d26b-4b6f-9e71-fbab2b1cb58a",
+        `https://api.theclockchain.io/api/v1/wallet/checkout/networks/${data.coinId}`,
         {
           params: {
-            coinId: "83040981-d26b-4b6f-9e71-fbab2b1cb58a",
+            coinId: `${data.coinId}`,
           },
           headers: {
             "clock-api-key":
-              "cpay_test_sk_q1kca1623ghr96nfpy4u8pi6uikr5mw6jk9spapx",
+              "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
           },
         }
       );
       setNetworks(response.data.data);
+      console.log(response.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -76,15 +78,16 @@ export default function Home() {
   async function getCoins() {
     try {
       const response = await axios.get(
-        "https://api.dev.theclockchain.io/api/v1/wallet/checkout/coins",
+        "https://api.theclockchain.io/api/v1/wallet/checkout/coins",
         {
           headers: {
             "clock-api-key":
-              "cpay_test_sk_q1kca1623ghr96nfpy4u8pi6uikr5mw6jk9spapx",
+              "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
           },
         }
       );
       setCoins(response.data.data);
+      console.log(response.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -110,12 +113,12 @@ export default function Home() {
 
     try {
       const response = await axios.post(
-        "https://api.dev.theclockchain.io/api/v1/payment/create",
+        "https://api.theclockchain.io/api/v1/payment/create",
         payload,
         {
           headers: {
             "clock-api-key":
-              "cpay_test_sk_q1kca1623ghr96nfpy4u8pi6uikr5mw6jk9spapx",
+              "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
           },
         }
       );
@@ -152,14 +155,18 @@ export default function Home() {
   // }
 
   useEffect(() => {
-    getNetworks();
     getCoins();
   }, []);
+  useEffect(() => {
+    if (data.coinId) {
+      getNetworks();
+    }
+  }, [data.coinId]);
 
   return (
-    <div className="flex justify-center items-center h-screen bg-white ">
+    <div className="flex justify-center items-center h-screen bg-white p-6">
       <form
-        className="border w-2/3 p-6 space-y-4 mt-10 shadow-lg rounded-md "
+        className="border w-1/2 p-6 space-y-4 mt-10 shadow-lg rounded-md "
         onSubmit={handleSubmit}
       >
         {errorResp && (
