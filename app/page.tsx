@@ -199,6 +199,14 @@ export default function Home() {
             className="border w-1/3 p-6 space-y-4 mt-10 shadow-lg rounded-md bg-white h-fit"
             onSubmit={handleSubmit}
           >
+            <div className="w-full flex justify-end">
+              <p
+                onClick={() => setModal(false)}
+                className=" cursor-pointer text-red-400"
+              >
+                close
+              </p>
+            </div>
             {errorResp && (
               <div className="border p-2 rounded-lg bg-red-200 text-red-700 border-red-700">
                 {errorResp}
