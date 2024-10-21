@@ -39,17 +39,19 @@ export default function Home() {
   const [networks, setNetworks] = useState([]);
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [modal, setModal] = useState(false);
   const [data, setData] = useState<DataProps>({
-    amount: 0,
+    amount: 1,
     coinId: "",
-    currency: "",
-    customerId: "",
-    description: "",
+    currency: "usd",
+    customerId: "489344",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa expedita iure culpa? Dolorem, iure. Minima, praesentium quas amet mollitia nemo placeat vel incidunt, sequi repellat asperiores aperiam voluptate sed saepe?",
     email: "",
     fullName: "",
     networkId: "",
     reference: "",
-    title: "",
+    title: "Ankara Shoe",
   });
   const [errorResp, setErrorResp] = useState("");
 
@@ -164,153 +166,119 @@ export default function Home() {
   }, [data.coinId]);
 
   return (
-    <div className="flex justify-center items-center h-screen bg-white p-6">
-      <form
-        className="border w-1/2 p-6 space-y-4 mt-10 shadow-lg rounded-md "
-        onSubmit={handleSubmit}
-      >
-        {errorResp && (
-          <div className="border p-2 rounded-lg bg-red-200 text-red-700 border-red-700">
-            {errorResp}
-          </div>
-        )}
+    <div className="flex justify-center items-center h-screen bg-white p-6 relative">
+      <div className="border rounded-2xl p-4 w-1/5 text-black">
         <div className="">
-          <label className="text-black">Fullname: </label>
-          <br />
-          <input
-            placeholder="Enter fullname"
-            className="border p-2 rounded-md w-full outline-none text-black"
-            name="fullName"
-            onChange={(e) =>
-              setData({ ...data, [e.target.name]: e.target.value })
-            }
+          <img
+            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg0.etsystatic.com%2F192%2F1%2F7518594%2Fil_570xN.1254470102_lysd.jpg&f=1&nofb=1&ipt=eb6f6c2cf5cae7a80149094bc48b8b6268a921f55e7392f2c3c87c38ed91523b&ipo=images"
+            className="w-full h-full"
+            alt=""
           />
         </div>
-        <div className="">
-          <label className="text-black">Title: </label>
-          <br />
-          <input
-            placeholder="Enter the title"
-            className="border p-2 rounded-md w-full outline-none text-black"
-            name="title"
-            onChange={(e) =>
-              setData({ ...data, [e.target.name]: e.target.value })
-            }
-          />
+        <div className="flex justify-between items-center">
+          <h1 className="font-bold">Ankara Shoe</h1>
+          <p className="font-bold text-blue-600">$1/1usdc</p>
         </div>
-        <div className="">
-          <label className="text-black">Amount: </label>
-          <br />
-          <input
-            placeholder="Enter the amount"
-            className="border p-2 rounded-md w-full outline-none text-black"
-            name="amount"
-            onChange={(e) =>
-              setData({ ...data, [e.target.name]: Number(e.target.value) })
-            }
-          />
-        </div>
-        <div className="">
-          <label className="text-black">Email: </label>
-          <br />
-          <input
-            placeholder="Enter the email"
-            className="border p-2 rounded-md w-full outline-none text-black"
-            name="email"
-            onChange={(e) =>
-              setData({ ...data, [e.target.name]: e.target.value })
-            }
-          />
-        </div>
-        <div className="">
-          <label className="text-black">CustomerId: </label>
-          <br />
-          <input
-            placeholder="Enter the customer id"
-            className="border p-2 rounded-md w-full outline-none text-black"
-            name="customerId"
-            onChange={(e) =>
-              setData({ ...data, [e.target.name]: e.target.value })
-            }
-          />
-        </div>
-        <div className="">
-          <label className="text-black">Coin: </label>
-          <br />
-          <select
-            className="border rounded-md p-2 w-full outline-none form-select text-black"
-            name="coinId"
-            onChange={(e) =>
-              setData({ ...data, [e.target.name]: e.target.value })
-            }
-          >
-            <option>Please select coin</option>
-            {coins?.map((item: { id: string; name: string }) => (
-              <option key={item.id} value={item.id}>
-                {item.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="">
-          <label className="text-black">Network: </label>
-          <br />
-          <select
-            className="border rounded-md p-2 w-full outline-none form-select text-black"
-            name="networkId"
-            onChange={(e) =>
-              setData({ ...data, [e.target.name]: e.target.value })
-            }
-          >
-            <option>Please select network</option>
-            {networks?.map((item: { id: string; name: string }) => (
-              <option key={item.id} value={item.id}>
-                {item.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="">
-          <label className="text-black">Currency: </label>
-          <br />
-          <select
-            className="border rounded-md p-2 w-full outline-none form-select text-black"
-            name="currency"
-            onChange={(e) =>
-              setData({ ...data, [e.target.name]: e.target.value })
-            }
-          >
-            <option>Please select currency</option>
-            <option value="ngn">NGN</option>
-            <option value="usd">USD</option>
-          </select>
-        </div>
-        <div>
-          <hr />
-        </div>
-        <div className="">
-          <label className="text-black">Description: </label>
-          <br />
-          <textarea
-            placeholder="Enter description"
-            className="border p-2 rounded-md w-full outline-none text-black"
-            name="description"
-            onChange={(e) =>
-              setData({ ...data, [e.target.name]: e.target.value })
-            }
-          ></textarea>
-        </div>
+        <p className="text-gray-700 text-sm">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa
+          expedita iure culpa? Dolorem, iure. Minima, praesentium quas amet
+          mollitia nemo placeat vel incidunt, sequi repellat asperiores aperiam
+          voluptate sed saepe?
+        </p>
+        <button
+          className="w-full btn bg-blue-500 p-2 rounded-lg text-white"
+          onClick={() => setModal(true)}
+        >
+          {loading ? "loading..." : "Checkout with ClockPay"}
+        </button>
+      </div>
 
-        <div>
-          <button
-            className="w-full btn bg-purple-700 p-2 rounded-lg"
-            type="submit"
-            disabled={loading}
+      {modal && (
+        <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black/70">
+          <form
+            className="border w-1/3 p-6 space-y-4 mt-10 shadow-lg rounded-md bg-white h-fit"
+            onSubmit={handleSubmit}
           >
-            {loading ? "loading..." : "Submit"}
-          </button>
+            {errorResp && (
+              <div className="border p-2 rounded-lg bg-red-200 text-red-700 border-red-700">
+                {errorResp}
+              </div>
+            )}
+            <div className="">
+              <label className="text-black">Fullname: </label>
+              <br />
+              <input
+                placeholder="Enter fullname"
+                className="border p-2 rounded-md w-full outline-none text-black"
+                name="fullName"
+                onChange={(e) =>
+                  setData({ ...data, [e.target.name]: e.target.value })
+                }
+              />
+            </div>
+
+            <div className="">
+              <label className="text-black">Email: </label>
+              <br />
+              <input
+                placeholder="Enter the email"
+                className="border p-2 rounded-md w-full outline-none text-black"
+                name="email"
+                onChange={(e) =>
+                  setData({ ...data, [e.target.name]: e.target.value })
+                }
+              />
+            </div>
+
+            <div className="">
+              <label className="text-black">Coin: </label>
+              <br />
+              <select
+                className="border rounded-md p-2 w-full outline-none form-select text-black"
+                name="coinId"
+                onChange={(e) =>
+                  setData({ ...data, [e.target.name]: e.target.value })
+                }
+              >
+                <option>Please select coin</option>
+                {coins?.map((item: { id: string; name: string }) => (
+                  <option key={item.id} value={item.id}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="">
+              <label className="text-black">Network: </label>
+              <br />
+              <select
+                className="border rounded-md p-2 w-full outline-none form-select text-black"
+                name="networkId"
+                onChange={(e) =>
+                  setData({ ...data, [e.target.name]: e.target.value })
+                }
+              >
+                <option>Please select network</option>
+                {networks?.map((item: { id: string; name: string }) => (
+                  <option key={item.id} value={item.id}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <button
+                className="w-full btn bg-blue-500 p-2 rounded-lg"
+                type="submit"
+                disabled={loading}
+              >
+                {loading ? "loading..." : "Submit"}
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
+      )}
     </div>
   );
 }
