@@ -115,7 +115,7 @@ export default function Home() {
 
     try {
       const response = await axios.post(
-        "https://api.theclockchain.io/api/v1/payment/create",
+        "https://api.theclockchain.io/api/v1/payment/link/create",
         payload,
         {
           headers: {
