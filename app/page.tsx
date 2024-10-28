@@ -66,7 +66,8 @@ export default function Home() {
           },
           headers: {
             "clock-api-key":
-              "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
+              "cpay_live_pk_51agzlofqlkv3i4malkp6d53hl7v3jjzrtaax6q1",
+            // "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
           },
         }
       );
@@ -84,7 +85,8 @@ export default function Home() {
         {
           headers: {
             "clock-api-key":
-              "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
+              "cpay_live_pk_51agzlofqlkv3i4malkp6d53hl7v3jjzrtaax6q1",
+            // "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
           },
         }
       );
@@ -120,7 +122,8 @@ export default function Home() {
         {
           headers: {
             "clock-api-key":
-              "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
+              "cpay_live_pk_51agzlofqlkv3i4malkp6d53hl7v3jjzrtaax6q1",
+            // "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
           },
         }
       );
