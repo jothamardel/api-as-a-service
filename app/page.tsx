@@ -244,7 +244,7 @@ export default function Home() {
             </div>
 
             <div className="">
-              <label className="text-black">Coin: </label>
+              <label className="text-black">Preferred Currency: </label>
               <br />
               <select
                 className="border rounded-md p-2 w-full outline-none form-select text-black"
@@ -253,7 +253,7 @@ export default function Home() {
                   setData({ ...data, [e.target.name]: e.target.value })
                 }
               >
-                <option>Please select coin</option>
+                <option>Please select currency</option>
                 {coins?.map((item: { id: string; name: string }) => (
                   <option key={item.id} value={item.id}>
                     {item.name}
