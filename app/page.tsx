@@ -59,15 +59,15 @@ export default function Home() {
     if (!data.coinId) return;
     try {
       const response = await axios.get(
-        `https://api.dev.theclockchain.io/api/v1/wallet/checkout/networks/${data.coinId}`,
+        `https://api.theclockchain.io/api/v1/wallet/checkout/networks/${data.coinId}`,
         {
           params: {
             coinId: `${data.coinId}`,
           },
           headers: {
             "clock-api-key":
-              "cpay_live_pk_51agzlofqlkv3i4malkp6d53hl7v3jjzrtaax6q1",
-            // "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
+              "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
+            // "cpay_test_sk_q1kca1623ghr96nfpy4u8pi6uikr5mw6jk9spapx",
           },
         }
       );
@@ -81,13 +81,13 @@ export default function Home() {
   async function getCoins() {
     try {
       const response = await axios.get(
-        "https://api.dev.theclockchain.io/api/v1/wallet/checkout/coins",
+        "https://api.theclockchain.io/api/v1/wallet/checkout/coins",
         // "https://api.theclockchain.io/api/v1/wallet/checkout/coins",
         {
           headers: {
             "clock-api-key":
-              "cpay_live_pk_51agzlofqlkv3i4malkp6d53hl7v3jjzrtaax6q1",
-            // "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
+              "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
+            // "cpay_test_sk_q1kca1623ghr96nfpy4u8pi6uikr5mw6jk9spapx",
           },
         }
       );
@@ -118,14 +118,14 @@ export default function Home() {
 
     try {
       const response = await axios.post(
-        "https://api.dev.theclockchain.io/api/v1/payment/link/create",
-        // "https://api.theclockchain.io/api/v1/payment/link/create",
+        // "https://api.dev.theclockchain.io/api/v1/payment/link/create",
+        "https://api.theclockchain.io/api/v1/payment/link/create",
         payload,
         {
           headers: {
             "clock-api-key":
-              "cpay_live_pk_51agzlofqlkv3i4malkp6d53hl7v3jjzrtaax6q1",
-            // "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
+              "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
+            // "cpay_test_sk_q1kca1623ghr96nfpy4u8pi6uikr5mw6jk9spapx",
           },
         }
       );
@@ -172,7 +172,7 @@ export default function Home() {
 
   return (
     <div className="flex justify-center items-center h-screen bg-white p-6 relative">
-      <div className="border rounded-2xl p-4 w-1/5 text-black">
+      <div className="border rounded-2xl p-4 w-1/5 text-black md:w-1/2">
         <div className="">
           <img
             src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg0.etsystatic.com%2F192%2F1%2F7518594%2Fil_570xN.1254470102_lysd.jpg&f=1&nofb=1&ipt=eb6f6c2cf5cae7a80149094bc48b8b6268a921f55e7392f2c3c87c38ed91523b&ipo=images"
@@ -201,7 +201,7 @@ export default function Home() {
       {modal && (
         <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black/70">
           <form
-            className="border w-1/3 p-6 space-y-4 mt-10 shadow-lg rounded-md bg-white h-fit"
+            className="border w-1/3 p-6 space-y-4 mt-10 shadow-lg rounded-md bg-white h-fit md:w-1/2"
             onSubmit={handleSubmit}
           >
             <div className="w-full flex justify-end">
