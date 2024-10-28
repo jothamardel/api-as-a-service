@@ -59,7 +59,7 @@ export default function Home() {
     if (!data.coinId) return;
     try {
       const response = await axios.get(
-        `https://api.theclockchain.io/api/v1/wallet/checkout/networks/${data.coinId}`,
+        `https://api.dev.theclockchain.io/api/v1/wallet/checkout/networks/${data.coinId}`,
         {
           params: {
             coinId: `${data.coinId}`,
@@ -81,7 +81,8 @@ export default function Home() {
   async function getCoins() {
     try {
       const response = await axios.get(
-        "https://api.theclockchain.io/api/v1/wallet/checkout/coins",
+        "https://api.dev.theclockchain.io/api/v1/wallet/checkout/coins",
+        // "https://api.theclockchain.io/api/v1/wallet/checkout/coins",
         {
           headers: {
             "clock-api-key":
@@ -117,7 +118,8 @@ export default function Home() {
 
     try {
       const response = await axios.post(
-        "https://api.theclockchain.io/api/v1/payment/link/create",
+        "https://api.dev.theclockchain.io/api/v1/payment/link/create",
+        // "https://api.theclockchain.io/api/v1/payment/link/create",
         payload,
         {
           headers: {
