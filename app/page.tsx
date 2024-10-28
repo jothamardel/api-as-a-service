@@ -172,7 +172,7 @@ export default function Home() {
 
   return (
     <div className="flex justify-center items-center h-screen bg-white p-6 relative">
-      <div className="border rounded-2xl p-4 w-1/5 text-black md:w-1/2">
+      <div className="border rounded-2xl p-4 w-1/5 text-black ">
         <div className="">
           <img
             src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg0.etsystatic.com%2F192%2F1%2F7518594%2Fil_570xN.1254470102_lysd.jpg&f=1&nofb=1&ipt=eb6f6c2cf5cae7a80149094bc48b8b6268a921f55e7392f2c3c87c38ed91523b&ipo=images"
@@ -201,7 +201,7 @@ export default function Home() {
       {modal && (
         <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black/70">
           <form
-            className="border w-1/3 p-6 space-y-4 mt-10 shadow-lg rounded-md bg-white h-fit md:w-1/2"
+            className="border w-1/3 p-6 space-y-4 mt-10 shadow-lg rounded-md bg-white h-fit"
             onSubmit={handleSubmit}
           >
             <div className="w-full flex justify-end">
