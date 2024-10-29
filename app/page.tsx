@@ -1,297 +1,173 @@
+
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
-import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
+import { useState } from "react";
+import Link from "next/link";
+// import { ShoppingCart, Search, Menu } from "lucide-react";
+// import { useToast } from "@/components/ui/use-toast";
+// import { Toaster } from "@/components/ui/toaster";
+import ProductCard from "@/components/ProductCard";
+import { Header } from "@/components/Header";
 
-interface PayloadProps {
-  amount: number;
-  currency: string;
-  coinId: string;
-  networkId: string;
-  reference: string;
-  meta: {
-    title: string;
-    description: string;
-    email: string;
-    customerId: string;
-    fullName: string;
-  };
-}
-interface DataProps {
-  amount: number;
-  currency: string;
-  coinId: string;
-  networkId: string;
-  reference: string;
-  title: string;
-  description: string;
-  email: string;
-  customerId: string;
-  fullName: string;
-}
-
-// interface Response {
-//   response: { data: { message: string } };
-// }
+const products = [
+  {
+    id: 1,
+    name: "Dress Shoes",
+    price: 89.99,
+    image:
+      "https://img.freepik.com/free-photo/fashion-pink-glamour-women-heels_1203-6509.jpg?t=st=1730187152~exp=1730190752~hmac=2f19110f27d2693d8f8c855b038c4a08b18666cd94b92dc9e41035d3494ac0d9&w=1800",
+  },
+  {
+    id: 2,
+    name: "Casual Sneakers",
+    price: 59.99,
+    image:
+      "https://img.freepik.com/free-photo/pair-trainers_144627-3799.jpg?t=st=1730187559~exp=1730191159~hmac=dddc48cb745cac64f1f172bff850399e1f96ec964ea4d4c38982adbfe329e73f&w=1380",
+  },
+  {
+    id: 3,
+    name: "Running Shoes",
+    price: 99.99,
+    image:
+      "https://img.freepik.com/free-photo/fashion-shoes-sneakers_1203-7529.jpg?t=st=1730187757~exp=1730191357~hmac=11b488acc6fd8cb373ff4cc72f557ddd93dc1455b3932041d7cb619b4cec8ae2&w=1800",
+  },
+  {
+    id: 4,
+    name: "Hiking Boots",
+    price: 129.99,
+    image:
+      "https://img.freepik.com/premium-photo/yellow-orange-shoe-with-black-stripe_1313274-6892.jpg?w=1060",
+  },
+];
 
 export default function Home() {
-  const [networks, setNetworks] = useState([]);
-  const [coins, setCoins] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [modal, setModal] = useState(false);
-  const [data, setData] = useState<DataProps>({
-    amount: 1,
-    coinId: "",
-    currency: "usd",
-    customerId: "489344",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa expedita iure culpa? Dolorem, iure. Minima, praesentium quas amet mollitia nemo placeat vel incidunt, sequi repellat asperiores aperiam voluptate sed saepe?",
-    email: "",
-    fullName: "",
-    networkId: "",
-    reference: "",
-    title: "Ankara Shoe",
-  });
-  const [errorResp, setErrorResp] = useState("");
+  // const { toast } = useToast();
+  const [cartItems, setCartItems] = useState<number>(0);
 
-  async function getNetworks() {
-    if (!data.coinId) return;
-    try {
-      const response = await axios.get(
-        `https://api.theclockchain.io/api/v1/wallet/checkout/networks/${data.coinId}`,
-        {
-          params: {
-            coinId: `${data.coinId}`,
-          },
-          headers: {
-            "clock-api-key":
-              "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
-            // "cpay_test_sk_q1kca1623ghr96nfpy4u8pi6uikr5mw6jk9spapx",
-          },
-        }
-      );
-      setNetworks(response.data.data);
-      console.log(response.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function getCoins() {
-    try {
-      const response = await axios.get(
-        "https://api.theclockchain.io/api/v1/wallet/checkout/coins",
-        // "https://api.theclockchain.io/api/v1/wallet/checkout/coins",
-        {
-          headers: {
-            "clock-api-key":
-              "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
-            // "cpay_test_sk_q1kca1623ghr96nfpy4u8pi6uikr5mw6jk9spapx",
-          },
-        }
-      );
-      setCoins(response.data.data);
-      console.log(response.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function handleSubmit(e: FormEvent) {
-    e.preventDefault();
-    setLoading(true);
-    const payload: PayloadProps = {
-      amount: data.amount,
-      currency: data.currency,
-      coinId: data.coinId,
-      networkId: data.networkId,
-      reference: `${uuidv4()}`,
-      meta: {
-        title: data.title,
-        description: data.description,
-        email: data.email,
-        customerId: data.customerId,
-        fullName: data.fullName,
-      },
-    };
-
-    try {
-      const response = await axios.post(
-        // "https://api.dev.theclockchain.io/api/v1/payment/link/create",
-        "https://api.theclockchain.io/api/v1/payment/link/create",
-        payload,
-        {
-          headers: {
-            "clock-api-key":
-              "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
-            // "cpay_test_sk_q1kca1623ghr96nfpy4u8pi6uikr5mw6jk9spapx",
-          },
-        }
-      );
-      console.log(response.data.data);
-      window.location.href = `${response.data.data?.link}`;
-      // setHtmlData(format(response.data));
-      setLoading(false);
-      // @typescript-eslint/no-explicit-any
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      console.log(error?.response);
-      setErrorResp(error?.response?.data?.message);
-      setLoading(false);
-    }
-  }
-  // function format(html: any) {
-  //   const tab = "\t";
-  //   let result = "";
-  //   let indent = "";
-
-  //   html.split(/>\s*</).forEach(function (element: any) {
-  //     if (element.match(/^\/\w/)) {
-  //       indent = indent.substring(tab.length);
-  //     }
-
-  //     result += indent + "<" + element + ">\r\n";
-
-  //     if (element.match(/^<?\w[^>]*[^\/]$/) && !element.startsWith("input")) {
-  //       indent += tab;
-  //     }
+  // const addToCart = (product: (typeof products)[0]) => {
+  //   setCartItems((prevItems) => prevItems + 1);
+  //   toast({
+  //     title: "Product added to cart",
+  //     description: `${product.name} has been added to your cart.`,
   //   });
+  // };
 
-  //   return result.substring(1, result.length - 3);
-  // }
-
-  useEffect(() => {
-    getCoins();
-  }, []);
-  useEffect(() => {
-    if (data.coinId) {
-      getNetworks();
-    }
-  }, [data.coinId]);
+  console.log(cartItems);
 
   return (
-    <div className="flex justify-center items-center h-screen bg-white p-6 relative">
-      <div className="border rounded-2xl p-4 w-1/5 text-black ">
-        <div className="">
-          <img
-            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg0.etsystatic.com%2F192%2F1%2F7518594%2Fil_570xN.1254470102_lysd.jpg&f=1&nofb=1&ipt=eb6f6c2cf5cae7a80149094bc48b8b6268a921f55e7392f2c3c87c38ed91523b&ipo=images"
-            className="w-full h-full"
-            alt=""
-          />
-        </div>
-        <div className="flex justify-between items-center">
-          <h1 className="font-bold">Ankara Shoe</h1>
-          <p className="font-bold text-blue-600">$1/1usdc</p>
-        </div>
-        <p className="text-gray-700 text-sm">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa
-          expedita iure culpa? Dolorem, iure. Minima, praesentium quas amet
-          mollitia nemo placeat vel incidunt, sequi repellat asperiores aperiam
-          voluptate sed saepe?
-        </p>
-        <button
-          className="w-full btn bg-blue-500 p-2 rounded-lg text-white"
-          onClick={() => setModal(true)}
-        >
-          {loading ? "loading..." : "Checkout with ClockPay"}
-        </button>
-      </div>
+    <div className="min-h-screen flex flex-col bg-background">
+      <Header cartItems={cartItems} />
 
-      {modal && (
-        <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black/70">
-          <form
-            className="border w-1/3 p-6 space-y-4 mt-10 shadow-lg rounded-md bg-white h-fit"
-            onSubmit={handleSubmit}
-          >
-            <div className="w-full flex justify-end">
-              <p
-                onClick={() => setModal(false)}
-                className=" cursor-pointer text-red-400"
-              >
-                close
-              </p>
-            </div>
-            {errorResp && (
-              <div className="border p-2 rounded-lg bg-red-200 text-red-700 border-red-700">
-                {errorResp}
+      <main className="flex-grow container mx-auto px-4 py-8">
+        <section className="mb-12">
+          <div className="relative h-[400px] rounded-lg overflow-hidden shadow-lg">
+            <img
+              src="/flash.jpg"
+              alt="Hero"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-primary bg-opacity-70 flex items-center justify-center">
+              <div className="text-center">
+                <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-4 ">
+                  Summer Sale
+                </h1>
+                <p className="text-xl md:text-2xl text-primary-foreground mb-6">
+                  Up to 50% off on selected items
+                </p>
+                <button>Shop Now</button>
               </div>
-            )}
-            <div className="">
-              <label className="text-black">Fullname: </label>
-              <br />
-              <input
-                placeholder="Enter fullname"
-                className="border p-2 rounded-md w-full outline-none text-black"
-                name="fullName"
-                onChange={(e) =>
-                  setData({ ...data, [e.target.name]: e.target.value })
-                }
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold mb-6 ">
+            Featured Products
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {products.map((product, i) => (
+              <ProductCard
+                key={i}
+                {...product}
+                setCartItems={setCartItems}
+                cartItems={cartItems}
               />
-            </div>
+            ))}
+          </div>
+        </section>
+      </main>
 
-            <div className="">
-              <label className="text-black">Email: </label>
-              <br />
-              <input
-                placeholder="Enter the email"
-                className="border p-2 rounded-md w-full outline-none text-black"
-                name="email"
-                onChange={(e) =>
-                  setData({ ...data, [e.target.name]: e.target.value })
-                }
-              />
-            </div>
-
-            <div className="">
-              <label className="text-black">Preferred Currency: </label>
-              <br />
-              <select
-                className="border rounded-md p-2 w-full outline-none form-select text-black"
-                name="coinId"
-                onChange={(e) =>
-                  setData({ ...data, [e.target.name]: e.target.value })
-                }
-              >
-                <option>Please select currency</option>
-                {coins?.map((item: { id: string; name: string }) => (
-                  <option key={item.id} value={item.id}>
-                    {item.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="">
-              <label className="text-black">Network: </label>
-              <br />
-              <select
-                className="border rounded-md p-2 w-full outline-none form-select text-black"
-                name="networkId"
-                onChange={(e) =>
-                  setData({ ...data, [e.target.name]: e.target.value })
-                }
-              >
-                <option>Please select network</option>
-                {networks?.map((item: { id: string; name: string }) => (
-                  <option key={item.id} value={item.id}>
-                    {item.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
+      <footer className="bg-secondary text-secondary-foreground mt-12 py-8">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-              <button
-                className="w-full btn bg-blue-500 p-2 rounded-lg"
-                type="submit"
-                disabled={loading}
-              >
-                {loading ? "loading..." : "Submit"}
-              </button>
+              <h3 className="text-lg font-semibold mb-4">Customer Service</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="#" className="hover:text-primary">
+                    Contact Us
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-primary">
+                    Returns & Exchanges
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-primary">
+                    Shipping Information
+                  </Link>
+                </li>
+              </ul>
             </div>
-          </form>
+            <div>
+              <h3 className="text-lg font-semibold mb-4">About Us</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="#" className="hover:text-primary">
+                    Our Story
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-primary">
+                    Careers
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-primary">
+                    Privacy Policy
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Connect With Us</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="#" className="hover:text-primary">
+                    Facebook
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-primary">
+                    Instagram
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-primary">
+                    Twitter
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-8 text-center text-muted-foreground">
+            <p>&copy; 2024 ShoeStore. All rights reserved.</p>
+          </div>
         </div>
-      )}
+      </footer>
+
+      {/* <Toaster /> */}
     </div>
   );
 }
