@@ -427,7 +427,7 @@ export default function Checkout() {
       {modal && (
         <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black/70">
           <form
-            className="border w-1/3 p-6 space-y-4 mt-10 shadow-lg rounded-2xl bg-white h-fit flex flex-col items-center"
+            className="border w-1/3 p-6 space-y-4 mt-10 shadow-lg rounded-2xl bg-white h-fit flex flex-col items-center sm:w-[90%]"
             onSubmit={handleSubmit}
           >
             <div className=" flex justify-end w-full">
