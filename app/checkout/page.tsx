@@ -525,7 +525,7 @@ export default function Checkout() {
                 {loading ? "loading..." : "Submit"}
               </button>
             </div>
-            <div className="flex mx-auto items-center justify-center mb-6 border rounded-xl p-2 w-full">
+            <div className="flex mx-auto items-center justify-center mb-6 border rounded-xl p-2 w-fit">
               <p className="text-base font-light text-black">
                 Secured by
               </p>
