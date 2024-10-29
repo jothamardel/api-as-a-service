@@ -1,4 +1,153 @@
+/* eslint-disable */
+"use client";
+
+import { FormEvent, useEffect, useState } from "react";
+import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
+
+interface PayloadProps {
+  amount: number;
+  currency: string;
+  coinId: string;
+  networkId: string;
+  reference: string;
+  meta: {
+    title: string;
+    description: string;
+    email: string;
+    customerId: string;
+    fullName: string;
+  };
+}
+interface DataProps {
+  amount: number;
+  currency: string;
+  coinId: string;
+  networkId: string;
+  reference: string;
+  title: string;
+  description: string;
+  email: string;
+  customerId: string;
+  fullName: string;
+}
+
 export default function Checkout() {
+  const [cartItems, setCartItems] = useState<number>(0);
+  const [networks, setNetworks] = useState([]);
+  const [coins, setCoins] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [data, setData] = useState<DataProps>({
+    amount: 1,
+    coinId: "",
+    currency: "usd",
+    customerId: "489344",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa expedita iure culpa? Dolorem, iure. Minima, praesentium quas amet mollitia nemo placeat vel incidunt, sequi repellat asperiores aperiam voluptate sed saepe?",
+    email: "",
+    fullName: "",
+    networkId: "",
+    reference: "",
+    title: "Ankara Shoe",
+  });
+  const [errorResp, setErrorResp] = useState("");
+
+  async function getNetworks() {
+    if (!data.coinId) return;
+    try {
+      const response = await axios.get(
+        `https://api.theclockchain.io/api/v1/wallet/checkout/networks/${data.coinId}`,
+        {
+          params: {
+            coinId: `${data.coinId}`,
+          },
+          headers: {
+            "clock-api-key":
+              "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
+            // "cpay_test_sk_q1kca1623ghr96nfpy4u8pi6uikr5mw6jk9spapx",
+          },
+        }
+      );
+      setNetworks(response.data.data);
+      console.log(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function getCoins() {
+    try {
+      const response = await axios.get(
+        "https://api.theclockchain.io/api/v1/wallet/checkout/coins",
+        // "https://api.theclockchain.io/api/v1/wallet/checkout/coins",
+        {
+          headers: {
+            "clock-api-key":
+              "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
+            // "cpay_test_sk_q1kca1623ghr96nfpy4u8pi6uikr5mw6jk9spapx",
+          },
+        }
+      );
+      setCoins(response.data.data);
+      console.log(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    const payload: PayloadProps = {
+      amount: data.amount,
+      currency: data.currency,
+      coinId: data.coinId,
+      networkId: data.networkId,
+      reference: `${uuidv4()}`,
+      meta: {
+        title: data.title,
+        description: data.description,
+        email: data.email,
+        customerId: data.customerId,
+        fullName: data.fullName,
+      },
+    };
+
+    try {
+      const response = await axios.post(
+        // "https://api.dev.theclockchain.io/api/v1/payment/link/create",
+        "https://api.theclockchain.io/api/v1/payment/link/create",
+        payload,
+        {
+          headers: {
+            "clock-api-key":
+              "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
+            // "cpay_test_sk_q1kca1623ghr96nfpy4u8pi6uikr5mw6jk9spapx",
+          },
+        }
+      );
+      console.log(response.data.data);
+      window.location.href = `${response.data.data?.link}`;
+      // setHtmlData(format(response.data));
+      setLoading(false);
+      // @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.log(error?.response);
+      setErrorResp(error?.response?.data?.message);
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getCoins();
+  }, []);
+  useEffect(() => {
+    if (data.coinId) {
+      getNetworks();
+    }
+  }, [data.coinId]);
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-6xl mx-auto">
