@@ -334,100 +334,100 @@ export default function Home() {
   //       </button>
   //     </div>
 
-  //     {modal && (
-  //       <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black/70">
-  //         <form
-  //           className="border w-1/3 p-6 space-y-4 mt-10 shadow-lg rounded-md bg-white h-fit"
-  //           onSubmit={handleSubmit}
-  //         >
-  //           <div className="w-full flex justify-end">
-  //             <p
-  //               onClick={() => setModal(false)}
-  //               className=" cursor-pointer text-red-400"
-  //             >
-  //               close
-  //             </p>
-  //           </div>
-  //           {errorResp && (
-  //             <div className="border p-2 rounded-lg bg-red-200 text-red-700 border-red-700">
-  //               {errorResp}
-  //             </div>
-  //           )}
-  //           <div className="">
-  //             <label className="text-black">Fullname: </label>
-  //             <br />
-  //             <input
-  //               placeholder="Enter fullname"
-  //               className="border p-2 rounded-md w-full outline-none text-black"
-  //               name="fullName"
-  //               onChange={(e) =>
-  //                 setData({ ...data, [e.target.name]: e.target.value })
-  //               }
-  //             />
-  //           </div>
+      // {modal && (
+      //   <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black/70">
+      //     <form
+      //       className="border w-1/3 p-6 space-y-4 mt-10 shadow-lg rounded-md bg-white h-fit"
+      //       onSubmit={handleSubmit}
+      //     >
+      //       <div className="w-full flex justify-end">
+      //         <p
+      //           onClick={() => setModal(false)}
+      //           className=" cursor-pointer text-red-400"
+      //         >
+      //           close
+      //         </p>
+      //       </div>
+      //       {errorResp && (
+      //         <div className="border p-2 rounded-lg bg-red-200 text-red-700 border-red-700">
+      //           {errorResp}
+      //         </div>
+      //       )}
+      //       <div className="">
+      //         <label className="text-black">Fullname: </label>
+      //         <br />
+      //         <input
+      //           placeholder="Enter fullname"
+      //           className="border p-2 rounded-md w-full outline-none text-black"
+      //           name="fullName"
+      //           onChange={(e) =>
+      //             setData({ ...data, [e.target.name]: e.target.value })
+      //           }
+      //         />
+      //       </div>
 
-  //           <div className="">
-  //             <label className="text-black">Email: </label>
-  //             <br />
-  //             <input
-  //               placeholder="Enter the email"
-  //               className="border p-2 rounded-md w-full outline-none text-black"
-  //               name="email"
-  //               onChange={(e) =>
-  //                 setData({ ...data, [e.target.name]: e.target.value })
-  //               }
-  //             />
-  //           </div>
+      //       <div className="">
+      //         <label className="text-black">Email: </label>
+      //         <br />
+      //         <input
+      //           placeholder="Enter the email"
+      //           className="border p-2 rounded-md w-full outline-none text-black"
+      //           name="email"
+      //           onChange={(e) =>
+      //             setData({ ...data, [e.target.name]: e.target.value })
+      //           }
+      //         />
+      //       </div>
 
-  //           <div className="">
-  //             <label className="text-black">Preferred Currency: </label>
-  //             <br />
-  //             <select
-  //               className="border rounded-md p-2 w-full outline-none form-select text-black"
-  //               name="coinId"
-  //               onChange={(e) =>
-  //                 setData({ ...data, [e.target.name]: e.target.value })
-  //               }
-  //             >
-  //               <option>Please select currency</option>
-  //               {coins?.map((item: { id: string; name: string }) => (
-  //                 <option key={item.id} value={item.id}>
-  //                   {item.name}
-  //                 </option>
-  //               ))}
-  //             </select>
-  //           </div>
-  //           <div className="">
-  //             <label className="text-black">Network: </label>
-  //             <br />
-  //             <select
-  //               className="border rounded-md p-2 w-full outline-none form-select text-black"
-  //               name="networkId"
-  //               onChange={(e) =>
-  //                 setData({ ...data, [e.target.name]: e.target.value })
-  //               }
-  //             >
-  //               <option>Please select network</option>
-  //               {networks?.map((item: { id: string; name: string }) => (
-  //                 <option key={item.id} value={item.id}>
-  //                   {item.name}
-  //                 </option>
-  //               ))}
-  //             </select>
-  //           </div>
+      //       <div className="">
+      //         <label className="text-black">Preferred Currency: </label>
+      //         <br />
+      //         <select
+      //           className="border rounded-md p-2 w-full outline-none form-select text-black"
+      //           name="coinId"
+      //           onChange={(e) =>
+      //             setData({ ...data, [e.target.name]: e.target.value })
+      //           }
+      //         >
+      //           <option>Please select currency</option>
+      //           {coins?.map((item: { id: string; name: string }) => (
+      //             <option key={item.id} value={item.id}>
+      //               {item.name}
+      //             </option>
+      //           ))}
+      //         </select>
+      //       </div>
+      //       <div className="">
+      //         <label className="text-black">Network: </label>
+      //         <br />
+      //         <select
+      //           className="border rounded-md p-2 w-full outline-none form-select text-black"
+      //           name="networkId"
+      //           onChange={(e) =>
+      //             setData({ ...data, [e.target.name]: e.target.value })
+      //           }
+      //         >
+      //           <option>Please select network</option>
+      //           {networks?.map((item: { id: string; name: string }) => (
+      //             <option key={item.id} value={item.id}>
+      //               {item.name}
+      //             </option>
+      //           ))}
+      //         </select>
+      //       </div>
 
-  //           <div>
-  //             <button
-  //               className="w-full btn bg-blue-500 p-2 rounded-lg"
-  //               type="submit"
-  //               disabled={loading}
-  //             >
-  //               {loading ? "loading..." : "Submit"}
-  //             </button>
-  //           </div>
-  //         </form>
-  //       </div>
-  //     )}
+      //       <div>
+      //         <button
+      //           className="w-full btn bg-blue-500 p-2 rounded-lg"
+      //           type="submit"
+      //           disabled={loading}
+      //         >
+      //           {loading ? "loading..." : "Submit"}
+      //         </button>
+      //       </div>
+      //     </form>
+      //   </div>
+      // )}
   //   </div>
   // );
 }
