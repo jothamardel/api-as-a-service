@@ -4,6 +4,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
+import logo from "@/public/logo.svg"
 
 interface PayloadProps {
   amount: number;
@@ -525,9 +526,13 @@ export default function Checkout() {
               </button>
             </div>
             <div className="flex mx-auto items-center justify-center mb-6 border rounded-xl p-2 w-full">
-              <p className="text-base font-light text-black">Secured by ClockPay</p>
+              <p className="text-base font-light text-black">
+                Secured by
+              </p>
               <img
-                src="https://www.theclockchain.io/assets/cpaylogo-4e467dd9.svg"
+                src={
+                  "https://cpay.theclockchain.io/_next/static/media/brand.c857ecf9.svg"
+                }
                 alt="logo"
                 className="w-[4.5rem] ml-2"
               />
