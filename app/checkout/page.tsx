@@ -427,10 +427,10 @@ export default function Checkout() {
       {modal && (
         <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black/70">
           <form
-            className="border w-1/2 p-6 space-y-4 mt-10 shadow-lg rounded-2xl bg-white h-fit"
+            className="border w-1/3 p-6 space-y-4 mt-10 shadow-lg rounded-2xl bg-white h-fit flex flex-col items-center"
             onSubmit={handleSubmit}
           >
-            <div className="w-full flex justify-end">
+            <div className=" flex justify-end w-full">
               <p
                 onClick={() => setModal(false)}
                 className=" cursor-pointer text-red-400"
@@ -438,7 +438,7 @@ export default function Checkout() {
                 close
               </p>
             </div>
-            <div className="text-center">
+            <div className="text-center w-full">
               <div className="flex justify-center items-center space-x-2">
                 <img src="/usdc.png" alt="usdc" className="w-6" />
                 <p className="text-black text-2xl font-bold">99.99</p>
@@ -450,7 +450,7 @@ export default function Checkout() {
                 {errorResp}
               </div>
             )}
-            <div className="">
+            <div className=" w-full">
               <label className="text-black">Fullname: </label>
               <br />
               <input
@@ -464,7 +464,7 @@ export default function Checkout() {
               />
             </div>
 
-            <div className="">
+            <div className=" w-full">
               <label className="text-black">Email: </label>
               <br />
               <input
@@ -478,7 +478,7 @@ export default function Checkout() {
               />
             </div>
 
-            <div className="">
+            <div className=" w-full">
               <label className="text-black">Preferred Currency: </label>
               <br />
               <select
@@ -496,7 +496,7 @@ export default function Checkout() {
                 ))}
               </select>
             </div>
-            <div className="">
+            <div className=" w-full">
               <label className="text-black">Network: </label>
               <br />
               <select
@@ -515,7 +515,7 @@ export default function Checkout() {
               </select>
             </div>
 
-            <div>
+            <div className="w-full">
               <button
                 className="w-full btn bg-[#27AAE1] p-2 rounded-lg"
                 type="submit"
@@ -524,9 +524,13 @@ export default function Checkout() {
                 {loading ? "loading..." : "Submit"}
               </button>
             </div>
-            <div className="flex mx-auto items-center justify-center mb-6 border rounded-xl p-2">
-              <p className="text-base font-light">Secured by </p>
-              <img src="/logo.svg" alt="logo" className="w-[4.5rem] ml-2" />
+            <div className="flex mx-auto items-center justify-center mb-6 border rounded-xl p-2 w-full">
+              <p className="text-base font-light text-black">Secured by ClockPay</p>
+              <img
+                src="https://www.theclockchain.io/assets/cpaylogo-4e467dd9.svg"
+                alt="logo"
+                className="w-[4.5rem] ml-2"
+              />
             </div>
           </form>
         </div>
