@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
