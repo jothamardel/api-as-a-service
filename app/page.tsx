@@ -13,28 +13,28 @@ const products = [
   {
     id: 1,
     name: "Dress Shoes",
-    price: 89.99,
+    price: 1,
     image:
       "https://img.freepik.com/free-photo/fashion-pink-glamour-women-heels_1203-6509.jpg?t=st=1730187152~exp=1730190752~hmac=2f19110f27d2693d8f8c855b038c4a08b18666cd94b92dc9e41035d3494ac0d9&w=1800",
   },
   {
     id: 2,
     name: "Casual Sneakers",
-    price: 59.99,
+    price: 1,
     image:
       "https://img.freepik.com/free-photo/pair-trainers_144627-3799.jpg?t=st=1730187559~exp=1730191159~hmac=dddc48cb745cac64f1f172bff850399e1f96ec964ea4d4c38982adbfe329e73f&w=1380",
   },
   {
     id: 3,
     name: "Running Shoes",
-    price: 99.99,
+    price: 1,
     image:
       "https://img.freepik.com/free-photo/fashion-shoes-sneakers_1203-7529.jpg?t=st=1730187757~exp=1730191357~hmac=11b488acc6fd8cb373ff4cc72f557ddd93dc1455b3932041d7cb619b4cec8ae2&w=1800",
   },
   {
     id: 4,
     name: "Hiking Boots",
-    price: 129.99,
+    price: 1,
     image:
       "https://img.freepik.com/premium-photo/yellow-orange-shoe-with-black-stripe_1313274-6892.jpg?w=1060",
   },
