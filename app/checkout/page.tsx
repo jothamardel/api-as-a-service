@@ -4,7 +4,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
-import logo from "@/public/logo.svg"
+import logo from "@/public/logo.svg";
 
 interface PayloadProps {
   amount: number;
@@ -297,13 +297,13 @@ export default function Checkout() {
                         <p className="text-sm text-black">Qty: 1</p>
                       </div>
                     </div>
-                    <p className="text-sm font-medium text-black">$99.99</p>
+                    <p className="text-sm font-medium text-black">$1</p>
                   </li>
                 </ul>
                 <div className="border-t border-gray-200 mt-4 pt-4">
                   <div className="flex justify-between items-center">
                     <p className="text-sm text-black">Subtotal</p>
-                    <p className="text-sm font-medium text-black">$99.99</p>
+                    <p className="text-sm font-medium text-black">$1</p>
                   </div>
                   <div className="flex justify-between items-center mt-2">
                     <p className="text-sm text-black">Shipping</p>
@@ -311,7 +311,7 @@ export default function Checkout() {
                   </div>
                   <div className="flex justify-between items-center mt-2">
                     <p className="text-base font-medium text-black">Total</p>
-                    <p className="text-base font-medium text-black">$99.99</p>
+                    <p className="text-base font-medium text-black">$1</p>
                   </div>
                 </div>
               </div>
@@ -526,9 +526,7 @@ export default function Checkout() {
               </button>
             </div>
             <div className="flex mx-auto items-center justify-center mb-6 border rounded-xl p-2 w-fit">
-              <p className="text-base font-light text-black">
-                Secured by
-              </p>
+              <p className="text-base font-light text-black">Secured by</p>
               <img
                 src={
                   "https://cpay.theclockchain.io/_next/static/media/brand.c857ecf9.svg"
