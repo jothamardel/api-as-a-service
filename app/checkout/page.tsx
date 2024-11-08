@@ -442,7 +442,7 @@ export default function Checkout() {
             <div className="text-center w-full">
               <div className="flex justify-center items-center space-x-2">
                 <img src="/usdc.png" alt="usdc" className="w-6" />
-                <p className="text-black text-2xl font-bold">99.99</p>
+                <p className="text-black text-2xl font-bold">1 </p>
                 <span className="text-black">usdc</span>
               </div>
             </div>
