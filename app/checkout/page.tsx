@@ -1,10 +1,10 @@
 /* eslint-disable */
-"use client";
+'use client';
 
-import { FormEvent, useEffect, useState } from "react";
-import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
-import logo from "@/public/logo.svg";
+import { FormEvent, useEffect, useState } from 'react';
+import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
+import logo from '@/public/logo.svg';
 
 interface PayloadProps {
   amount: number;
@@ -41,18 +41,18 @@ export default function Checkout() {
   const [modal, setModal] = useState(false);
   const [data, setData] = useState<DataProps>({
     amount: 1,
-    coinId: "",
-    currency: "usd",
-    customerId: "489344",
+    coinId: '',
+    currency: 'usd',
+    customerId: '489344',
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa expedita iure culpa? Dolorem, iure. Minima, praesentium quas amet mollitia nemo placeat vel incidunt, sequi repellat asperiores aperiam voluptate sed saepe?",
-    email: "",
-    fullName: "David Clair",
-    networkId: "davidclair@gmail.com",
-    reference: "",
-    title: "Ankara Shoe",
+      "Discover our latest collection of shoes that blend style and comfort seamlessly. From casual sneakers to elegant formal wear, our shoes are crafted with premium materials to ensure durability and a perfect fit. Whether you're stepping out for a casual day or a special occasion, our diverse range of footwear has something for everyone. Experience the perfect combination of fashion and functionality with our exclusive shoe collection.",
+    email: 'martins@theclockchain.io',
+    fullName: 'Martins Ejeheri',
+    networkId: 'martins@theclockchain.io',
+    reference: '',
+    title: 'Ankara Shoe',
   });
-  const [errorResp, setErrorResp] = useState("");
+  const [errorResp, setErrorResp] = useState('');
 
   async function getNetworks() {
     if (!data.coinId) return;
@@ -64,8 +64,8 @@ export default function Checkout() {
             coinId: `${data.coinId}`,
           },
           headers: {
-            "clock-api-key":
-              "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
+            'clock-api-key':
+              'cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10',
             // "cpay_test_sk_q1kca1623ghr96nfpy4u8pi6uikr5mw6jk9spapx",
           },
         }
@@ -80,12 +80,12 @@ export default function Checkout() {
   async function getCoins() {
     try {
       const response = await axios.get(
-        "https://api.theclockchain.io/api/v1/wallet/checkout/coins",
+        'https://api.theclockchain.io/api/v1/wallet/checkout/coins',
         // "https://api.theclockchain.io/api/v1/wallet/checkout/coins",
         {
           headers: {
-            "clock-api-key":
-              "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
+            'clock-api-key':
+              'cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10',
             // "cpay_test_sk_q1kca1623ghr96nfpy4u8pi6uikr5mw6jk9spapx",
           },
         }
@@ -118,12 +118,12 @@ export default function Checkout() {
     try {
       const response = await axios.post(
         // "https://api.dev.theclockchain.io/api/v1/payment/link/create",
-        "https://api.theclockchain.io/api/v1/payment/link/create",
+        'https://api.theclockchain.io/api/v1/payment/link/create',
         payload,
         {
           headers: {
-            "clock-api-key":
-              "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
+            'clock-api-key':
+              'cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10',
             // "cpay_test_sk_q1kca1623ghr96nfpy4u8pi6uikr5mw6jk9spapx",
           },
         }
@@ -151,128 +151,128 @@ export default function Checkout() {
   }, [data.coinId]);
   return (
     <>
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-3xl font-bold  mb-8">Checkout</h1>
+      <div className='container mx-auto px-4 py-8'>
+        <div className='max-w-6xl mx-auto'>
+          <h1 className='text-3xl font-bold  mb-8'>Checkout</h1>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className='grid md:grid-cols-2 gap-8'>
             <div>
-              <h2 className="text-xl font-semibold  mb-4">
+              <h2 className='text-xl font-semibold  mb-4'>
                 Shipping Information
               </h2>
               <form>
-                <div className="grid gap-4">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className='grid gap-4'>
+                  <div className='grid grid-cols-2 gap-4'>
                     <div>
                       <label
-                        htmlFor="first-name"
-                        className="block text-sm font-medium  mb-1"
+                        htmlFor='first-name'
+                        className='block text-sm font-medium  mb-1'
                       >
                         First Name
                       </label>
                       <input
-                        type="text"
-                        id="first-name"
-                        name="first-name"
+                        type='text'
+                        id='first-name'
+                        name='first-name'
                         required
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                        className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500'
                       />
                     </div>
                     <div>
                       <label
-                        htmlFor="last-name"
-                        className="block text-sm font-medium  mb-1"
+                        htmlFor='last-name'
+                        className='block text-sm font-medium  mb-1'
                       >
                         Last Name
                       </label>
                       <input
-                        type="text"
-                        id="last-name"
-                        name="last-name"
+                        type='text'
+                        id='last-name'
+                        name='last-name'
                         required
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                        className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500'
                       />
                     </div>
                   </div>
                   <div>
                     <label
-                      htmlFor="email"
-                      className="block text-sm font-medium  mb-1"
+                      htmlFor='email'
+                      className='block text-sm font-medium  mb-1'
                     >
                       Email Address
                     </label>
                     <input
-                      type="email"
-                      id="email"
-                      name="email"
+                      type='email'
+                      id='email'
+                      name='email'
                       required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500'
                     />
                   </div>
                   <div>
                     <label
-                      htmlFor="address"
-                      className="block text-sm font-medium  mb-1"
+                      htmlFor='address'
+                      className='block text-sm font-medium  mb-1'
                     >
                       Address
                     </label>
                     <input
-                      type="text"
-                      id="address"
-                      name="address"
+                      type='text'
+                      id='address'
+                      name='address'
                       required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500'
                     />
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className='grid grid-cols-2 gap-4'>
                     <div>
                       <label
-                        htmlFor="city"
-                        className="block text-sm font-medium  mb-1"
+                        htmlFor='city'
+                        className='block text-sm font-medium  mb-1'
                       >
                         City
                       </label>
                       <input
-                        type="text"
-                        id="city"
-                        name="city"
+                        type='text'
+                        id='city'
+                        name='city'
                         required
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                        className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500'
                       />
                     </div>
                     <div>
                       <label
-                        htmlFor="postal-code"
-                        className="block text-sm font-medium  mb-1"
+                        htmlFor='postal-code'
+                        className='block text-sm font-medium  mb-1'
                       >
                         Postal Code
                       </label>
                       <input
-                        type="text"
-                        id="postal-code"
-                        name="postal-code"
+                        type='text'
+                        id='postal-code'
+                        name='postal-code'
                         required
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                        className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500'
                       />
                     </div>
                   </div>
                   <div>
                     <label
-                      htmlFor="country"
-                      className="block text-sm font-medium  mb-1"
+                      htmlFor='country'
+                      className='block text-sm font-medium  mb-1'
                     >
                       Country
                     </label>
                     <select
-                      id="country"
-                      name="country"
+                      id='country'
+                      name='country'
                       required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                      className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500'
                     >
-                      <option value="">Select a country</option>
-                      <option value="US">United States</option>
-                      <option value="CA">Canada</option>
-                      <option value="UK">United Kingdom</option>
+                      <option value=''>Select a country</option>
+                      <option value='US'>United States</option>
+                      <option value='CA'>Canada</option>
+                      <option value='UK'>United Kingdom</option>
                     </select>
                   </div>
                 </div>
@@ -280,43 +280,43 @@ export default function Checkout() {
             </div>
 
             <div>
-              <h2 className="text-xl font-semibold  mb-4">Order Summary</h2>
-              <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-                <ul className="divide-y divide-gray-200">
-                  <li className="py-4 flex items-center justify-between">
-                    <div className="flex items-center">
+              <h2 className='text-xl font-semibold  mb-4'>Order Summary</h2>
+              <div className='bg-white rounded-lg shadow-sm p-6 mb-6'>
+                <ul className='divide-y divide-gray-200'>
+                  <li className='py-4 flex items-center justify-between'>
+                    <div className='flex items-center'>
                       <img
-                        src="https://img.freepik.com/premium-photo/yellow-orange-shoe-with-black-stripe_1313274-6892.jpg?w=1060"
-                        alt="Product 1"
-                        className="w-16 h-16 object-cover rounded"
+                        src='https://img.freepik.com/premium-photo/yellow-orange-shoe-with-black-stripe_1313274-6892.jpg?w=1060'
+                        alt='Product 1'
+                        className='w-16 h-16 object-cover rounded'
                       />
-                      <div className="ml-4">
-                        <h3 className="text-sm font-medium text-black">
+                      <div className='ml-4'>
+                        <h3 className='text-sm font-medium text-black'>
                           Running Shoes
                         </h3>
-                        <p className="text-sm text-black">Qty: 1</p>
+                        <p className='text-sm text-black'>Qty: 1</p>
                       </div>
                     </div>
-                    <p className="text-sm font-medium text-black">$1</p>
+                    <p className='text-sm font-medium text-black'>$1</p>
                   </li>
                 </ul>
-                <div className="border-t border-gray-200 mt-4 pt-4">
-                  <div className="flex justify-between items-center">
-                    <p className="text-sm text-black">Subtotal</p>
-                    <p className="text-sm font-medium text-black">$1</p>
+                <div className='border-t border-gray-200 mt-4 pt-4'>
+                  <div className='flex justify-between items-center'>
+                    <p className='text-sm text-black'>Subtotal</p>
+                    <p className='text-sm font-medium text-black'>$1</p>
                   </div>
-                  <div className="flex justify-between items-center mt-2">
-                    <p className="text-sm text-black">Shipping</p>
-                    <p className="text-sm font-medium text-black">$0.00</p>
+                  <div className='flex justify-between items-center mt-2'>
+                    <p className='text-sm text-black'>Shipping</p>
+                    <p className='text-sm font-medium text-black'>$0.00</p>
                   </div>
-                  <div className="flex justify-between items-center mt-2">
-                    <p className="text-base font-medium text-black">Total</p>
-                    <p className="text-base font-medium text-black">$1</p>
+                  <div className='flex justify-between items-center mt-2'>
+                    <p className='text-base font-medium text-black'>Total</p>
+                    <p className='text-base font-medium text-black'>$1</p>
                   </div>
                 </div>
               </div>
 
-              <h2 className="text-xl font-semibold  mb-4">Payment</h2>
+              <h2 className='text-xl font-semibold  mb-4'>Payment</h2>
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -375,47 +375,47 @@ export default function Checkout() {
                 </div>
               </div> */}
 
-                <div className="mt-6">
+                <div className='mt-6'>
                   <button
                     onClick={() => setModal(true)}
-                    className="w-full bg-[#27AAE1] text-white py-3 px-4 rounded-md  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+                    className='w-full bg-[#27AAE1] text-white py-3 px-4 rounded-md  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors'
                   >
                     Pay with ClockPay
                   </button>
                 </div>
-                <div className="mt-6">
+                <div className='mt-6'>
                   <button
-                    type="submit"
-                    className="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+                    type='submit'
+                    className='w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors'
                   >
                     Pay with Card
                   </button>
                 </div>
 
-                <div className="mt-4 flex flex-col space-y-2">
+                <div className='mt-4 flex flex-col space-y-2'>
                   <button
-                    type="button"
-                    className="w-full bg-black text-white py-3 px-4 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors flex items-center justify-center "
+                    type='button'
+                    className='w-full bg-black text-white py-3 px-4 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors flex items-center justify-center '
                   >
                     <svg
-                      className="w-5 h-5 mr-2"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
+                      className='w-5 h-5 mr-2'
+                      viewBox='0 0 24 24'
+                      fill='currentColor'
                     >
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-6h2v2h-2v-2zm0-8h2v6h-2V6z" />
+                      <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-6h2v2h-2v-2zm0-8h2v6h-2V6z' />
                     </svg>
                     Pay with Apple Pay
                   </button>
                   <button
-                    type="button"
-                    className="w-full bg-white text-gray-800 py-3 px-4 rounded-md border border-gray-300 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors flex items-center justify-center"
+                    type='button'
+                    className='w-full bg-white text-gray-800 py-3 px-4 rounded-md border border-gray-300 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors flex items-center justify-center'
                   >
                     <svg
-                      className="w-5 h-5 mr-2"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
+                      className='w-5 h-5 mr-2'
+                      viewBox='0 0 24 24'
+                      fill='currentColor'
                     >
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-6h2v2h-2v-2zm0-8h2v6h-2V6z" />
+                      <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-6h2v2h-2v-2zm0-8h2v6h-2V6z' />
                     </svg>
                     Pay with Google Pay
                   </button>
@@ -426,65 +426,65 @@ export default function Checkout() {
         </div>
       </div>
       {modal && (
-        <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black/70">
+        <div className='absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black/70'>
           <form
-            className="border w-[90%] md:max-w-lg p-6 space-y-4 mt-10 shadow-lg rounded-2xl bg-white h-fit flex flex-col items-center "
+            className='border w-[90%] md:max-w-lg p-6 space-y-4 mt-10 shadow-lg rounded-2xl bg-white h-fit flex flex-col items-center '
             onSubmit={handleSubmit}
           >
-            <div className=" flex justify-end w-full">
+            <div className=' flex justify-end w-full'>
               <p
                 onClick={() => setModal(false)}
-                className=" cursor-pointer text-red-400"
+                className=' cursor-pointer text-red-400'
               >
                 close
               </p>
             </div>
-            <div className="text-center w-full">
-              <div className="flex justify-center items-center space-x-2">
-                <img src="/usdc.png" alt="usdc" className="w-6" />
-                <p className="text-black text-2xl font-bold">1 </p>
-                <span className="text-black">usdc</span>
+            <div className='text-center w-full'>
+              <div className='flex justify-center items-center space-x-2'>
+                <img src='/usdc.png' alt='usdc' className='w-6' />
+                <p className='text-black text-2xl font-bold'>1 </p>
+                <span className='text-black'>usdc</span>
               </div>
             </div>
             {errorResp && (
-              <div className="border p-2 rounded-lg bg-red-200 text-red-700 border-red-700">
+              <div className='border p-2 rounded-lg bg-red-200 text-red-700 border-red-700'>
                 {errorResp}
               </div>
             )}
-            <div className=" w-full">
-              <label className="text-black">Fullname: </label>
+            <div className=' w-full'>
+              <label className='text-black'>Fullname: </label>
               <br />
               <input
-                placeholder="Enter fullname"
-                className="border p-2 rounded-md w-full outline-none text-black "
-                name="fullName"
-                defaultValue={"David Clair"}
+                placeholder='Enter fullname'
+                className='border p-2 rounded-md w-full outline-none text-black '
+                name='fullName'
+                defaultValue={'Martins Ejeheri'}
                 onChange={(e) =>
                   setData({ ...data, [e.target.name]: e.target.value })
                 }
               />
             </div>
 
-            <div className=" w-full">
-              <label className="text-black">Email: </label>
+            <div className=' w-full'>
+              <label className='text-black'>Email: </label>
               <br />
               <input
-                placeholder="Enter the email"
-                defaultValue={"davidclair@gmail.com"}
-                className="border p-2 rounded-md w-full outline-none text-black"
-                name="email"
+                placeholder='Enter the email'
+                defaultValue={'martins@theclockchain.io'}
+                className='border p-2 rounded-md w-full outline-none text-black'
+                name='email'
                 onChange={(e) =>
                   setData({ ...data, [e.target.name]: e.target.value })
                 }
               />
             </div>
 
-            <div className=" w-full">
-              <label className="text-black">Preferred Currency: </label>
+            <div className=' w-full'>
+              <label className='text-black'>Preferred Currency: </label>
               <br />
               <select
-                className="border rounded-md p-2 w-full outline-none form-select text-black"
-                name="coinId"
+                className='border rounded-md p-2 w-full outline-none form-select text-black'
+                name='coinId'
                 onChange={(e) =>
                   setData({ ...data, [e.target.name]: e.target.value })
                 }
@@ -497,12 +497,12 @@ export default function Checkout() {
                 ))}
               </select>
             </div>
-            <div className=" w-full">
-              <label className="text-black">Network: </label>
+            <div className=' w-full'>
+              <label className='text-black'>Network: </label>
               <br />
               <select
-                className="border rounded-md p-2 w-full outline-none form-select text-black"
-                name="networkId"
+                className='border rounded-md p-2 w-full outline-none form-select text-black'
+                name='networkId'
                 onChange={(e) =>
                   setData({ ...data, [e.target.name]: e.target.value })
                 }
@@ -516,23 +516,23 @@ export default function Checkout() {
               </select>
             </div>
 
-            <div className="w-full">
+            <div className='w-full'>
               <button
-                className="w-full btn bg-[#27AAE1] p-2 rounded-lg"
-                type="submit"
+                className='w-full btn bg-[#27AAE1] p-2 rounded-lg'
+                type='submit'
                 disabled={loading}
               >
-                {loading ? "loading..." : "Submit"}
+                {loading ? 'loading...' : 'Submit'}
               </button>
             </div>
-            <div className="flex mx-auto items-center justify-center mb-6 border rounded-xl p-2 w-fit">
-              <p className="text-base font-light text-black">Secured by</p>
+            <div className='flex mx-auto items-center justify-center mb-6 border rounded-xl p-2 w-fit'>
+              <p className='text-base font-light text-black'>Secured by</p>
               <img
                 src={
-                  "https://cpay.theclockchain.io/_next/static/media/brand.c857ecf9.svg"
+                  'https://cpay.theclockchain.io/_next/static/media/brand.c857ecf9.svg'
                 }
-                alt="logo"
-                className="w-[4.5rem] ml-2"
+                alt='logo'
+                className='w-[4.5rem] ml-2'
               />
             </div>
           </form>

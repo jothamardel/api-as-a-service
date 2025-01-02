@@ -1,10 +1,10 @@
 /* eslint-disable */
-"use client";
+'use client';
 
-import { FormEvent, useEffect, useState } from "react";
-import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
-import { Header } from "@/components/Header";
+import { FormEvent, useEffect, useState } from 'react';
+import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
+import { Header } from '@/components/Header';
 
 interface PayloadProps {
   amount: number;
@@ -45,18 +45,18 @@ export default function Home() {
   const [modal, setModal] = useState(false);
   const [data, setData] = useState<DataProps>({
     amount: 1,
-    coinId: "",
-    currency: "usd",
-    customerId: "489344",
+    coinId: '',
+    currency: 'usd',
+    customerId: '489344',
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa expedita iure culpa? Dolorem, iure. Minima, praesentium quas amet mollitia nemo placeat vel incidunt, sequi repellat asperiores aperiam voluptate sed saepe?",
-    email: "",
-    fullName: "",
-    networkId: "",
-    reference: "",
-    title: "Ankara Shoe",
+      "Discover our latest collection of shoes that blend style and comfort seamlessly. From casual sneakers to elegant formal wear, our shoes are crafted with premium materials to ensure durability and a perfect fit. Whether you're stepping out for a casual day or a special occasion, our diverse range of footwear has something for everyone. Experience the perfect combination of fashion and functionality with our exclusive shoe collection.",
+    email: '',
+    fullName: '',
+    networkId: '',
+    reference: '',
+    title: 'Ankara Shoe',
   });
-  const [errorResp, setErrorResp] = useState("");
+  const [errorResp, setErrorResp] = useState('');
 
   async function getNetworks() {
     if (!data.coinId) return;
@@ -68,8 +68,8 @@ export default function Home() {
             coinId: `${data.coinId}`,
           },
           headers: {
-            "clock-api-key":
-              "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
+            'clock-api-key':
+              'cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10',
             // "cpay_test_sk_q1kca1623ghr96nfpy4u8pi6uikr5mw6jk9spapx",
           },
         }
@@ -84,12 +84,12 @@ export default function Home() {
   async function getCoins() {
     try {
       const response = await axios.get(
-        "https://api.theclockchain.io/api/v1/wallet/checkout/coins",
+        'https://api.theclockchain.io/api/v1/wallet/checkout/coins',
         // "https://api.theclockchain.io/api/v1/wallet/checkout/coins",
         {
           headers: {
-            "clock-api-key":
-              "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
+            'clock-api-key':
+              'cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10',
             // "cpay_test_sk_q1kca1623ghr96nfpy4u8pi6uikr5mw6jk9spapx",
           },
         }
@@ -122,12 +122,12 @@ export default function Home() {
     try {
       const response = await axios.post(
         // "https://api.dev.theclockchain.io/api/v1/payment/link/create",
-        "https://api.theclockchain.io/api/v1/payment/link/create",
+        'https://api.theclockchain.io/api/v1/payment/link/create',
         payload,
         {
           headers: {
-            "clock-api-key":
-              "cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10",
+            'clock-api-key':
+              'cpay_live_sk_kx9ltn5ccd0la15emqggvwydejtvsxz2he638h10',
             // "cpay_test_sk_q1kca1623ghr96nfpy4u8pi6uikr5mw6jk9spapx",
           },
         }
@@ -176,79 +176,79 @@ export default function Home() {
   return (
     <>
       <Header cartItems={cartItems} />
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-6xl mx-auto">
-          <nav className="mb-8">
-            <ol className="flex items-center space-x-2 text-sm ">
+      <div className='container mx-auto px-4 py-8'>
+        <div className='max-w-6xl mx-auto'>
+          <nav className='mb-8'>
+            <ol className='flex items-center space-x-2 text-sm '>
               <li>
-                <a href="/" className="hover:">
+                <a href='/' className='hover:'>
                   Home
                 </a>
               </li>
               <li>
-                <span className="mx-2">/</span>
+                <span className='mx-2'>/</span>
               </li>
               <li>
-                <a href="#" className="hover:">
+                <a href='#' className='hover:'>
                   cart
                 </a>
               </li>
             </ol>
           </nav>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="aspect-square relative overflow-hidden rounded-lg bg-gray-200">
+          <div className='grid md:grid-cols-2 gap-8'>
+            <div className='aspect-square relative overflow-hidden rounded-lg bg-gray-200'>
               <img
-                src="https://img.freepik.com/premium-photo/yellow-orange-shoe-with-black-stripe_1313274-6892.jpg?w=1060"
-                alt="Ergonomic Chair"
-                className="absolute inset-0 w-full h-full object-cover"
+                src='https://img.freepik.com/premium-photo/yellow-orange-shoe-with-black-stripe_1313274-6892.jpg?w=1060'
+                alt='Ergonomic Chair'
+                className='absolute inset-0 w-full h-full object-cover'
               />
             </div>
 
             <div>
-              <h1 className="text-3xl font-bold  mb-4">Running Shoes</h1>
-              <div className="flex items-center mb-4">
-                <div className="flex items-center">
+              <h1 className='text-3xl font-bold  mb-4'>Running Shoes</h1>
+              <div className='flex items-center mb-4'>
+                <div className='flex items-center'>
                   <svg
-                    className="w-5 h-5 text-yellow-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                    className='w-5 h-5 text-yellow-400'
+                    fill='currentColor'
+                    viewBox='0 0 20 20'
                   >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    <path d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z'></path>
                   </svg>
                   <svg
-                    className="w-5 h-5 text-yellow-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                    className='w-5 h-5 text-yellow-400'
+                    fill='currentColor'
+                    viewBox='0 0 20 20'
                   >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    <path d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z'></path>
                   </svg>
                   <svg
-                    className="w-5 h-5 text-yellow-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                    className='w-5 h-5 text-yellow-400'
+                    fill='currentColor'
+                    viewBox='0 0 20 20'
                   >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    <path d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z'></path>
                   </svg>
                   <svg
-                    className="w-5 h-5 text-yellow-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                    className='w-5 h-5 text-yellow-400'
+                    fill='currentColor'
+                    viewBox='0 0 20 20'
                   >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    <path d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z'></path>
                   </svg>
                   <svg
-                    className="w-5 h-5 text-gray-300"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                    className='w-5 h-5 text-gray-300'
+                    fill='currentColor'
+                    viewBox='0 0 20 20'
                   >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    <path d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z'></path>
                   </svg>
                 </div>
-                <p className="ml-2 text-sm ">4.0 (24 reviews)</p>
+                <p className='ml-2 text-sm '>4.0 (24 reviews)</p>
               </div>
-              <p className="text-2xl font-bold mb-4">$99.99</p>
-              <p className=" mb-6">
+              <p className='text-2xl font-bold mb-4'>$99.99</p>
+              <p className=' mb-6'>
                 Stay ahead in style and comfort with our ultra-light running
                 shoes. Engineered for durability and support, these shoes
                 feature breathable mesh fabric, shock-absorbing soles, and a
@@ -257,27 +257,27 @@ export default function Home() {
                 performance and style, helping you go the extra mile.
               </p>
 
-              <div className="mb-6">
-                <h2 className="text-sm font-medium mb-2">Color</h2>
-                <div className="flex items-center space-x-3">
-                  <button className="w-8 h-8 bg-gray-900 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"></button>
-                  <button className="w-8 h-8 bg-blue-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"></button>
-                  <button className="w-8 h-8 bg-red-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"></button>
+              <div className='mb-6'>
+                <h2 className='text-sm font-medium mb-2'>Color</h2>
+                <div className='flex items-center space-x-3'>
+                  <button className='w-8 h-8 bg-gray-900 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500'></button>
+                  <button className='w-8 h-8 bg-blue-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'></button>
+                  <button className='w-8 h-8 bg-red-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500'></button>
                 </div>
               </div>
 
               <button
                 onClick={() => setCartItems(cartItems + 1)}
-                className="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+                className='w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors'
               >
                 Add to Cart
               </button>
             </div>
           </div>
 
-          <div className="mt-16">
-            <h2 className="text-2xl font-bold mb-4">Product Details</h2>
-            <ul className="list-disc pl-5 space-y-2 ">
+          <div className='mt-16'>
+            <h2 className='text-2xl font-bold mb-4'>Product Details</h2>
+            <ul className='list-disc pl-5 space-y-2 '>
               <li>
                 Lightweight & Breathable: Crafted with airy mesh fabric,
                 ensuring maximum ventilation for cool, dry comfort during every
@@ -321,10 +321,7 @@ export default function Home() {
   //         <p className="font-bold text-blue-600">$1/1usdc</p>
   //       </div>
   //       <p className=" text-sm">
-  //         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa
-  //         expedita iure culpa? Dolorem, iure. Minima, praesentium quas amet
-  //         mollitia nemo placeat vel incidunt, sequi repellat asperiores aperiam
-  //         voluptate sed saepe?
+  //  "Discover our latest collection of shoes that blend style and comfort seamlessly. From casual sneakers to elegant formal wear, our shoes are crafted with premium materials to ensure durability and a perfect fit. Whether you're stepping out for a casual day or a special occasion, our diverse range of footwear has something for everyone. Experience the perfect combination of fashion and functionality with our exclusive shoe collection.";
   //       </p>
   //       <button
   //         className="w-full btn bg-blue-500 p-2 rounded-lg text-white"
@@ -334,100 +331,100 @@ export default function Home() {
   //       </button>
   //     </div>
 
-      // {modal && (
-      //   <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black/70">
-      //     <form
-      //       className="border w-1/3 p-6 space-y-4 mt-10 shadow-lg rounded-md bg-white h-fit"
-      //       onSubmit={handleSubmit}
-      //     >
-      //       <div className="w-full flex justify-end">
-      //         <p
-      //           onClick={() => setModal(false)}
-      //           className=" cursor-pointer text-red-400"
-      //         >
-      //           close
-      //         </p>
-      //       </div>
-      //       {errorResp && (
-      //         <div className="border p-2 rounded-lg bg-red-200 text-red-700 border-red-700">
-      //           {errorResp}
-      //         </div>
-      //       )}
-      //       <div className="">
-      //         <label className="text-black">Fullname: </label>
-      //         <br />
-      //         <input
-      //           placeholder="Enter fullname"
-      //           className="border p-2 rounded-md w-full outline-none text-black"
-      //           name="fullName"
-      //           onChange={(e) =>
-      //             setData({ ...data, [e.target.name]: e.target.value })
-      //           }
-      //         />
-      //       </div>
+  // {modal && (
+  //   <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black/70">
+  //     <form
+  //       className="border w-1/3 p-6 space-y-4 mt-10 shadow-lg rounded-md bg-white h-fit"
+  //       onSubmit={handleSubmit}
+  //     >
+  //       <div className="w-full flex justify-end">
+  //         <p
+  //           onClick={() => setModal(false)}
+  //           className=" cursor-pointer text-red-400"
+  //         >
+  //           close
+  //         </p>
+  //       </div>
+  //       {errorResp && (
+  //         <div className="border p-2 rounded-lg bg-red-200 text-red-700 border-red-700">
+  //           {errorResp}
+  //         </div>
+  //       )}
+  //       <div className="">
+  //         <label className="text-black">Fullname: </label>
+  //         <br />
+  //         <input
+  //           placeholder="Enter fullname"
+  //           className="border p-2 rounded-md w-full outline-none text-black"
+  //           name="fullName"
+  //           onChange={(e) =>
+  //             setData({ ...data, [e.target.name]: e.target.value })
+  //           }
+  //         />
+  //       </div>
 
-      //       <div className="">
-      //         <label className="text-black">Email: </label>
-      //         <br />
-      //         <input
-      //           placeholder="Enter the email"
-      //           className="border p-2 rounded-md w-full outline-none text-black"
-      //           name="email"
-      //           onChange={(e) =>
-      //             setData({ ...data, [e.target.name]: e.target.value })
-      //           }
-      //         />
-      //       </div>
+  //       <div className="">
+  //         <label className="text-black">Email: </label>
+  //         <br />
+  //         <input
+  //           placeholder="Enter the email"
+  //           className="border p-2 rounded-md w-full outline-none text-black"
+  //           name="email"
+  //           onChange={(e) =>
+  //             setData({ ...data, [e.target.name]: e.target.value })
+  //           }
+  //         />
+  //       </div>
 
-      //       <div className="">
-      //         <label className="text-black">Preferred Currency: </label>
-      //         <br />
-      //         <select
-      //           className="border rounded-md p-2 w-full outline-none form-select text-black"
-      //           name="coinId"
-      //           onChange={(e) =>
-      //             setData({ ...data, [e.target.name]: e.target.value })
-      //           }
-      //         >
-      //           <option>Please select currency</option>
-      //           {coins?.map((item: { id: string; name: string }) => (
-      //             <option key={item.id} value={item.id}>
-      //               {item.name}
-      //             </option>
-      //           ))}
-      //         </select>
-      //       </div>
-      //       <div className="">
-      //         <label className="text-black">Network: </label>
-      //         <br />
-      //         <select
-      //           className="border rounded-md p-2 w-full outline-none form-select text-black"
-      //           name="networkId"
-      //           onChange={(e) =>
-      //             setData({ ...data, [e.target.name]: e.target.value })
-      //           }
-      //         >
-      //           <option>Please select network</option>
-      //           {networks?.map((item: { id: string; name: string }) => (
-      //             <option key={item.id} value={item.id}>
-      //               {item.name}
-      //             </option>
-      //           ))}
-      //         </select>
-      //       </div>
+  //       <div className="">
+  //         <label className="text-black">Preferred Currency: </label>
+  //         <br />
+  //         <select
+  //           className="border rounded-md p-2 w-full outline-none form-select text-black"
+  //           name="coinId"
+  //           onChange={(e) =>
+  //             setData({ ...data, [e.target.name]: e.target.value })
+  //           }
+  //         >
+  //           <option>Please select currency</option>
+  //           {coins?.map((item: { id: string; name: string }) => (
+  //             <option key={item.id} value={item.id}>
+  //               {item.name}
+  //             </option>
+  //           ))}
+  //         </select>
+  //       </div>
+  //       <div className="">
+  //         <label className="text-black">Network: </label>
+  //         <br />
+  //         <select
+  //           className="border rounded-md p-2 w-full outline-none form-select text-black"
+  //           name="networkId"
+  //           onChange={(e) =>
+  //             setData({ ...data, [e.target.name]: e.target.value })
+  //           }
+  //         >
+  //           <option>Please select network</option>
+  //           {networks?.map((item: { id: string; name: string }) => (
+  //             <option key={item.id} value={item.id}>
+  //               {item.name}
+  //             </option>
+  //           ))}
+  //         </select>
+  //       </div>
 
-      //       <div>
-      //         <button
-      //           className="w-full btn bg-blue-500 p-2 rounded-lg"
-      //           type="submit"
-      //           disabled={loading}
-      //         >
-      //           {loading ? "loading..." : "Submit"}
-      //         </button>
-      //       </div>
-      //     </form>
-      //   </div>
-      // )}
+  //       <div>
+  //         <button
+  //           className="w-full btn bg-blue-500 p-2 rounded-lg"
+  //           type="submit"
+  //           disabled={loading}
+  //         >
+  //           {loading ? "loading..." : "Submit"}
+  //         </button>
+  //       </div>
+  //     </form>
+  //   </div>
+  // )}
   //   </div>
   // );
 }
