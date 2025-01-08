@@ -64,7 +64,7 @@ export default function Checkout() {
             coinId: `${data.coinId}`,
           },
           headers: {
-            'clock-api-key': process.env.CLOCKPAY_API_KEY,
+            'clock-api-key': process.env.NEXT_PUBLIC_CLOCKPAY_API_KEY,
           },
         }
       );
@@ -82,7 +82,7 @@ export default function Checkout() {
         // "https://api.theclockchain.io/api/v1/wallet/checkout/coins",
         {
           headers: {
-            'clock-api-key': process.env.CLOCKPAY_API_KEY,
+            'clock-api-key': process.env.NEXT_PUBLIC_CLOCKPAY_API_KEY,
           },
         }
       );
@@ -118,7 +118,7 @@ export default function Checkout() {
         payload,
         {
           headers: {
-            'clock-api-key': process.env.CLOCKPAY_API_KEY,
+            'clock-api-key': process.env.NEXT_PUBLIC_CLOCKPAY_API_KEY,
           },
         }
       );
@@ -143,6 +143,7 @@ export default function Checkout() {
       getNetworks();
     }
   }, [data.coinId]);
+
   return (
     <>
       <div className='container mx-auto px-4 py-8'>
