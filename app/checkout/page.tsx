@@ -64,8 +64,7 @@ export default function Checkout() {
             coinId: `${data.coinId}`,
           },
           headers: {
-            'clock-api-key':
-              'cpay_live_sk_uipnv4mhmr6bx97pw6yta2d24y0r652fw13d4fri',
+            'clock-api-key': process.env.CLOCKPAY_API_KEY,
           },
         }
       );
@@ -83,8 +82,7 @@ export default function Checkout() {
         // "https://api.theclockchain.io/api/v1/wallet/checkout/coins",
         {
           headers: {
-            'clock-api-key':
-              'cpay_live_sk_uipnv4mhmr6bx97pw6yta2d24y0r652fw13d4fri',
+            'clock-api-key': process.env.CLOCKPAY_API_KEY,
           },
         }
       );
@@ -120,8 +118,7 @@ export default function Checkout() {
         payload,
         {
           headers: {
-            'clock-api-key':
-              'cpay_live_sk_uipnv4mhmr6bx97pw6yta2d24y0r652fw13d4fri',
+            'clock-api-key': process.env.CLOCKPAY_API_KEY,
           },
         }
       );
